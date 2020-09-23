@@ -22,6 +22,14 @@ switchNameHandler=()=>{
   ]})
 }
 
+nameChangeHandler =(e)=>{
+  this.setState({persons:[
+    {name:"AbdulMalik", age:"32"},
+    {name:e.target.value.toUpperCase(), age:"31"}
+
+  ]})
+}
+
 
   render() {
     return (
@@ -31,8 +39,16 @@ switchNameHandler=()=>{
         <button onClick={this.switchNameHandler}>Switch Name</button>
         <br></br>
 
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}/>
+        <Person name={this.state.persons[0].name}
+         age={this.state.persons[0].age}
+         click={this.switchNameHandler}
+
+         />
+        <Person name={this.state.persons[1].name} 
+        age={this.state.persons[1].age}
+        changed={this.nameChangeHandler}
+
+        />
        
         
       </div>
