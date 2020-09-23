@@ -1,7 +1,6 @@
 
 
 import React, { Component } from 'react';
-// import App from "./App.css";
 
 import Person from "./components/Person";
 
@@ -33,11 +32,25 @@ nameChangeHandler =(e)=>{
 
 
   render() {
+
+    const style={
+      backgroundColor:"pink",
+      border:"2px solid blue",
+      padding:"8px",
+      cursor:"pointer",
+      display:"block",
+      margin:"auto"
+
+
+    }
+
     return (
       <div>
         <h2>Greetings</h2>
         <br></br>
-        <button onClick={this.switchNameHandler}>Switch Name</button>
+        <button 
+        style={style}
+        onClick={this.switchNameHandler}>Switch Name</button>
         <br></br>
 
         <Person name={this.state.persons[0].name}
