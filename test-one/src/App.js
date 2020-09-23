@@ -1,6 +1,7 @@
 
 
 import React, { Component } from 'react';
+// import App from "./App.css";
 
 import Person from "./components/Person";
 
