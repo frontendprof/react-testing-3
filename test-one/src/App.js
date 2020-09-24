@@ -15,14 +15,6 @@ state={
   showPersons:false
 }
 
-switchNameHandler=()=>{
-  this.setState({persons:[
-    {name:"AbdulMalik", age:"32"},
-    {name:"Sohiba", age:"31"},
-    {name:"Sumayya",age:"5"}
-
-  ]})
-}
 
 nameChangeHandler =(e)=>{
   this.setState({persons:[
@@ -31,6 +23,14 @@ nameChangeHandler =(e)=>{
     {name:"Sumayya", age:"5"}
 
   ]})
+}
+
+deletePersonHandler=(perInd)=>{
+  // const persons=this.state.persons.slice();
+  const persons=[...this.state.persons];
+  persons.splice(perInd,1);
+  this.setState({persons:persons})
+
 }
 
 
@@ -60,24 +60,16 @@ togglePersonsHandler=()=>{
       persons=(
       
         <div>
-          <Person name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-          click={this.switchNameHandler}
-          />
-
-          <Person name={this.state.persons[1].name} 
-          age={this.state.persons[1].age}
-          changed={this.nameChangeHandler}
-          />
-
-          <Person name={this.state.persons[2].name} 
-          age={this.state.persons[2].age}
-          changed={this.nameChangeHandler}
-          />
-
-      </div>
-      )
-    }
+          {this.state.persons.map((p,ind)=>{
+            return <Person key={p.name}
+            click={()=>this.deletePersonHandler(ind)} 
+            name={p.name} 
+            age={p.age}/>
+          })}
+    
+        </div>
+      );
+    };
 
 
 
@@ -89,7 +81,8 @@ togglePersonsHandler=()=>{
         <br></br>
         <button 
         style={style}
-        onClick={this.togglePersonsHandler}>Toggle Persons</button>
+        onClick={this.togglePersonsHandler}>Toggle Persons
+        </button>
         <br></br>
         {persons}
         
