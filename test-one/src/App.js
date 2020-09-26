@@ -1,10 +1,29 @@
 
 
 import React, { Component } from 'react';
-import Radium, {StyleRoot} from "radium";
+// import Radium, {StyledRoot} from "radium";
+import styled from 'styled-components';
 
 import "./App.css";
 import Person from "./components/Person";
+
+
+const StyledButton=styled.div`
+  background-color:${props=>props.cond?"rgb(13, 97, 76)":"indigo"};
+  color:white;
+  border:${props=>props.cond?"2px solid red":"2px solid orange"};  
+  padding:8px;
+  cursor:pointer;
+  display:block;
+  margin:auto;
+  
+  &:hover{
+    background-color:${props=>props.cond?"lightblue":"rgb(246, 51, 84)"};
+    color:${props=>props.cond?"blue":"yellow"};
+    `;
+
+
+
 
 class App extends Component {
 
@@ -56,21 +75,21 @@ togglePersonsHandler=()=>{
 
   render() {
 
-    const style={
-      backgroundColor:"indigo",
-      color:"white",
-      border:"2px solid orange",
-      padding:"8px",
-      cursor:"pointer",
-      display:"block",
-      margin:"auto",
-      ":hover":{
-        backgroundColor:"lightblue",
-        color:"blue"
-      }
+    // const style={
+    //   backgroundColor:"indigo",
+    //   color:"white",
+    //   border:"2px solid orange",
+    //   padding:"8px",
+    //   cursor:"pointer",
+    //   display:"block",
+    //   margin:"auto",
+    //   ":hover":{
+    //     backgroundColor:"lightblue",
+    //     color:"yellow"
+    //   }
 
 
-    }
+    // }
 
     let persons=null;
 
@@ -89,12 +108,12 @@ togglePersonsHandler=()=>{
     
         </div>
       );
-      style.backgroundColor="rgb(13, 97, 76)";
-      style.border="2px solid red";
-      style[":hover"]={
-        backgroundColor:"lightgrey",
-        color:"blue"
-      };
+      // style.backgroundColor="rgb(13, 97, 76)";
+      // style.border="2px solid red";
+      // style[":hover"]={
+      //   backgroundColor:"lightgrey",
+      //   color:"blue"
+      // };
     };
 
 
@@ -109,24 +128,22 @@ togglePersonsHandler=()=>{
 
 
     return (
-      <StyleRoot>
       <div className="App">
         <h2>Greetings</h2>
         <hr/>
         <h2 className={classes.join("  ")}>I am React App</h2>
         <br></br>
-        <button 
-        style={style}
+        <StyledButton 
+        cond={this.state.showPersons}
         onClick={this.togglePersonsHandler}>Toggle Persons
-        </button>
+        </StyledButton>
         <br></br>
         {persons}
         
       </div>
-      </StyleRoot>
     );
   }
 };
 
 
-export default Radium(App);
+export default App;
