@@ -8,22 +8,33 @@ class App extends Component {
 
 state={
   persons:[
-    {name:"Abula", age:"22"},
-    {name:"Soxi", age:"21"},
-    {name:"Sumi",age:"1"}
+    {id:"abcie",name:"Abula", age:"22"},
+    {id:"feiru", name:"Soxi", age:"21"},
+    {id:"mfefsfei",name:"Sumi",age:"1"}
   ],
   showPersons:false
 }
 
 
-nameChangeHandler =(e)=>{
-  this.setState({persons:[
-    {name:"AbdulMalik", age:"32"},
-    {name:e.target.value.toUpperCase(), age:"31"},
-    {name:"Sumayya", age:"5"}
+nameChangeHandler =(event,id)=>{
 
-  ]})
+  const personInd=this.state.persons.findIndex(p=>{
+    return p.id===id;
+  })
+
+  const person={
+    ...this.state.persons[personInd]
+  }
+
+  person.name= event.target.value;
+
+  const persons=[...this.state.persons];
+  persons[personInd]=person;
+
+  this.setState({persons:persons})
 }
+
+
 
 deletePersonHandler=(perInd)=>{
   // const persons=this.state.persons.slice();
@@ -44,8 +55,9 @@ togglePersonsHandler=()=>{
   render() {
 
     const style={
-      backgroundColor:"pink",
-      border:"2px solid blue",
+      backgroundColor:"indigo",
+      color:"white",
+      border:"2px solid red",
       padding:"8px",
       cursor:"pointer",
       display:"block",
@@ -60,15 +72,19 @@ togglePersonsHandler=()=>{
       persons=(
       
         <div>
-          {this.state.persons.map((p,ind)=>{
-            return <Person key={p.name}
+          {this.state.persons.map((person,ind)=>{
+            return <Person key={person.id}
             click={()=>this.deletePersonHandler(ind)} 
-            name={p.name} 
-            age={p.age}/>
+            name={person.name} 
+            age={person.age}
+            changed={(e)=>this.nameChangeHandler(e, person.id)}
+            />
           })}
     
         </div>
       );
+      style.backgroundColor="red";
+      style.border="2px solid indigo";
     };
 
 

@@ -11,7 +11,7 @@ const Person = (props) => {
 
                 Person importante. {props.name} is {props.age} years old.
             </h3>
-            <input type="text" onChange={props.changed}/>
+            <input type="text" onChange={props.changed} value={props.name}/>
         </div>
     );
 };
