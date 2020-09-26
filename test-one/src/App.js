@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 
+import "./App.css";
 import Person from "./components/Person";
 
 class App extends Component {
@@ -88,12 +89,21 @@ togglePersonsHandler=()=>{
     };
 
 
+    let classes=[];
+    if(this.state.persons.length<=2){
+      classes.push("vine");
+    }
 
+    if(this.state.persons.length<=1){
+      classes.push("bold");
+    }
 
 
     return (
-      <div>
+      <div className="App">
         <h2>Greetings</h2>
+        <hr/>
+        <h2 className={classes.join("  ")}>I am React App</h2>
         <br></br>
         <button 
         style={style}
