@@ -42,6 +42,8 @@ const Cockpit = (props) => {
         <div>
             <h2>Greetings</h2>
             <hr/>
+            <h2>{props.title}</h2>
+            <hr/>
             <h2 className={classes.join("  ")}>I am React App</h2>
             <br></br>
             <StyledButton 

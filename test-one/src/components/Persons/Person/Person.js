@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React,{Component} from 'react';
 // import Radium from "radium";
 import styled from 'styled-components';
 
@@ -22,19 +22,25 @@ const StyledDiv=styled.div`
 
 
 
-const Person = (props) => {
+class Person extends Component {
+    render(){
+
+        return (
+            // <div className="Person" style={style}>
+            <StyledDiv>
+                <h3 onClick={this.props.click}>
+    
+                    Person importante. {this.props.name} is {this.props.age} years old.
+                </h3>
+                <input type="text" onChange={this.props.changed} value={this.props.name}/>
+            </StyledDiv>
+        );
+
+
+    }
    
         
-    return (
-        // <div className="Person" style={style}>
-        <StyledDiv>
-            <h3 onClick={props.click}>
-
-                Person importante. {props.name} is {props.age} years old.
-            </h3>
-            <input type="text" onChange={props.changed} value={props.name}/>
-        </StyledDiv>
-    );
+  
 };
 
 export default Person;
