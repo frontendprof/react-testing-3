@@ -6,9 +6,10 @@ import styled from 'styled-components';
 
 import "./App.css";
 import Person from "./components/Person";
+import ErrorBoundry from "./ErrorBoundry/ErrorBoundry";
 
 
-const StyledButton=styled.div`
+const StyledButton=styled.button`
   background-color:${props=>props.cond?"rgb(13, 97, 76)":"indigo"};
   color:white;
   border:${props=>props.cond?"2px solid red":"2px solid orange"};  
@@ -75,22 +76,6 @@ togglePersonsHandler=()=>{
 
   render() {
 
-    // const style={
-    //   backgroundColor:"indigo",
-    //   color:"white",
-    //   border:"2px solid orange",
-    //   padding:"8px",
-    //   cursor:"pointer",
-    //   display:"block",
-    //   margin:"auto",
-    //   ":hover":{
-    //     backgroundColor:"lightblue",
-    //     color:"yellow"
-    //   }
-
-
-    // }
-
     let persons=null;
 
     if(this.state.showPersons){
@@ -98,22 +83,16 @@ togglePersonsHandler=()=>{
       
         <div>
           {this.state.persons.map((person,ind)=>{
-            return <Person key={person.id}
+            return <ErrorBoundry  key={person.id}><Person
             click={()=>this.deletePersonHandler(ind)} 
             name={person.name} 
             age={person.age}
             changed={(e)=>this.nameChangeHandler(e, person.id)}
-            />
+            /></ErrorBoundry>
           })}
     
         </div>
       );
-      // style.backgroundColor="rgb(13, 97, 76)";
-      // style.border="2px solid red";
-      // style[":hover"]={
-      //   backgroundColor:"lightgrey",
-      //   color:"blue"
-      // };
     };
 
 
